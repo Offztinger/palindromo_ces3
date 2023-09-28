@@ -110,13 +110,13 @@
                                         Palindromo
                                     </h1>
                                     <p>
-                                        Debe digitar una palabra en el campo de tipo texto.
+                                        Debe digitar una palabra en el campo de tipo texto. Mayor a 3 caracteres, de lo contrario no revisará si es palindromo.
                                     </p>
 
                                     <div class="input-container">
                                         <form class="d-flex justify-content-center">
                                             <input name="palabra" placeholder="Ingrese una palabra" value=""
-                                                   class="input-group"/>
+                                                   class="input-group" autocomplete="off"/>
                                             <button style="height: 100%" class="btn-outline-primary" type="submit">
                                                 Validar
                                             </button>
@@ -146,10 +146,14 @@
                                                 }
 
                                                 palabras[count] = palabra.toLowerCase().replaceAll(" ", "");
-                                                if (esPalindromo) {
-                                                    palindromos[count] = "Sí";
+                                                if(palabra.length() >= 3){
+                                                    if (esPalindromo) {
+                                                        palindromos[count] = "Sí";
+                                                    } else {
+                                                        palindromos[count] = "No";
+                                                    }
                                                 } else {
-                                                    palindromos[count] = "No";
+                                                    palindromos[count] = "No aplica";
                                                 }
                                                 count++;
                                             }
