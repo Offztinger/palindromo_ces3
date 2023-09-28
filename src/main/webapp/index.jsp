@@ -5,26 +5,26 @@
 
 <head>
     <!-- Basic -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <!-- Site Metas -->
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
 
     <title>Spering</title>
 
     <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/customStyles.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/customStyles.css" rel="stylesheet"/>
     <!-- responsive style -->
-    <link href="css/responsive.css" rel="stylesheet" />
+    <link href="css/responsive.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -34,12 +34,14 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg custom_nav-container">
                 <a class="navbar-brand" href="index.html">
-                    <img src="images/logo.png" alt="" />
+                    <img src="images/logo.png" alt=""/>
                     <span>
               Spering
             </span>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -113,8 +115,11 @@
 
                                     <div class="input-container">
                                         <form class="d-flex justify-content-center">
-                                            <input name="palabra" placeholder="Ingrese una palabra" value="" class="input-group"/>
-                                            <button style="height: 100%" class="btn-outline-primary" type="submit">Validar</button>
+                                            <input name="palabra" placeholder="Ingrese una palabra" value=""
+                                                   class="input-group"/>
+                                            <button style="height: 100%" class="btn-outline-primary" type="submit">
+                                                Validar
+                                            </button>
                                         </form>
                                     </div>
 
@@ -123,30 +128,33 @@
 
                                         String palabra = "";
                                         String[] palabras = new String[50];
+                                        String error = "";
                                         static String[] palindromos = new String[50];
                                         static int count = 0;
 
                                         public static String[] agregarPalabra(String[] palabras, String palabra) {
-                                            boolean esPalindromo = esPalindromo(palabra);
+                                            if(!palabra.isEmpty()){
+                                                boolean esPalindromo = esPalindromo(palabra);
 
-                                                for(int i = 0; i < palabras.length; i++){
-                                                    if(palabras[i] != null && palabras[i].equals(palabra)){
+                                                for (int i = 0; i < palabras.length; i++) {
+                                                    if (palabras[i] != null && palabras[i].equals(palabra)) {
                                                         return palabras;
                                                     }
                                                 }
                                                 palabras[count] = palabra.toLowerCase().replaceAll(" ", "");
-                                                if(esPalindromo){
+                                                if (esPalindromo) {
                                                     palindromos[count] = "Sí";
                                                 } else {
-                                                palindromos[count] = "No";
+                                                    palindromos[count] = "No";
                                                 }
                                                 count++;
+                                            }
 
                                             return palabras;
                                         }
 
                                         public static boolean esPalindromo(String palabra) {
-                                            if(palabra != null){
+                                            if (palabra != null) {
                                                 // Convertir la palabra a minúsculas
                                                 palabra = palabra.toLowerCase();
 
@@ -164,13 +172,13 @@
                                     %>
                                     <%
                                         palabra = request.getParameter("palabra");
-                                        if(palabra != null){
+                                        if (palabra != null) {
                                             palabras = agregarPalabra(palabras, palabra);
                                         }
                                     %>
-                                    <div>
-                                        <div class="d-inline-block w-auto" style="background: #FFFFFF;" >
-                                            <table>
+                                    <div class="mt-5">
+                                        <h1 style="font-size: 18px">Listado de palabras ingresadas</h1>
+                                            <table style="background: #ffffff">
                                                 <thead>
                                                 <tr>
                                                     <th>Palabra</th>
@@ -179,19 +187,22 @@
                                                 </thead>
                                                 <tbody>
                                                 <%
-                                                    for (int i=0;i<=49;i+=1) {
-                                                    if(palabras[i] != null && palindromos [i] != null){
+                                                    for (int i = 0; i <= 49; i += 1) {
+                                                        if (palabras[i] != null && palindromos[i] != null) {
                                                 %>
                                                 <tr>
-                                                    <td><%= palabras[i] %></td>
-                                                    <td><%=palindromos[i]%></td>
+                                                    <td><%= palabras[i] %>
+                                                    </td>
+                                                    <td><%=palindromos[i]%>
+                                                    </td>
                                                 </tr>
-                                                <%}}%>
+                                                <%
+                                                        }
+                                                    }
+                                                %>
                                                 </tbody>
 
                                             </table>
-
-                                        </div>
                                     </div>
                                 </div>
                             </div>
