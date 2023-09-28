@@ -22,6 +22,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet" />
+    <link href="css/customStyles.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="css/responsive.css" rel="stylesheet" />
 </head>
@@ -136,10 +137,9 @@
                                                 palabras[count] = palabra.toLowerCase().replaceAll(" ", "");
                                                 if(esPalindromo){
                                                     palindromos[count] = "Sí";
-                                                }
-                                            if(!esPalindromo){
+                                                } else {
                                                 palindromos[count] = "No";
-                                            }
+                                                }
                                                 count++;
 
                                             return palabras;
@@ -169,7 +169,7 @@
                                         }
                                     %>
                                     <div>
-                                        <div style="background: red">
+                                        <div class="d-inline-block w-auto" style="background: #FFFFFF;" >
                                             <table>
                                                 <thead>
                                                 <tr>
@@ -177,12 +177,18 @@
                                                     <th>¿Es palindromo?</th>
                                                 </tr>
                                                 </thead>
-                                                <% for (String word : palabras) {
-
-                                                if(word != null){
+                                                <tbody>
+                                                <%
+                                                    for (int i=0;i<=49;i+=1) {
+                                                    if(palabras[i] != null && palindromos [i] != null){
                                                 %>
-                                                <li><%= word %></li>
-                                                <% }} %>
+                                                <tr>
+                                                    <td><%= palabras[i] %></td>
+                                                    <td><%=palindromos[i]%></td>
+                                                </tr>
+                                                <%}}%>
+                                                </tbody>
+
                                             </table>
 
                                         </div>

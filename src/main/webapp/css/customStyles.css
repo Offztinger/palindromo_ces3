@@ -1,0 +1,20 @@
+th, td{
+    border: 1px solid black !important;
+    padding: 4px;
+}
+
+tr{
+    display: flex;
+}
+
+tr td:first-child, tr th:first-child{
+    width: 144px;
+    display: flex;
+    justify-content: center;
+}
+
+tr td:nth-child(2) {
+    width: 144px;
+    display: flex;
+    justify-content: center;
+}
