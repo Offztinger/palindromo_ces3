@@ -128,7 +128,7 @@
 
                                         String palabra = "";
                                         String[] palabras = new String[50];
-                                        String error = "";
+                                        static String error = "";
                                         static String[] palindromos = new String[50];
                                         static int count = 0;
 
@@ -138,9 +138,13 @@
 
                                                 for (int i = 0; i < palabras.length; i++) {
                                                     if (palabras[i] != null && palabras[i].equals(palabra)) {
+                                                        error = "Has ingresado una palabra existente";
                                                         return palabras;
+                                                    } else {
+                                                        error = "";
                                                     }
                                                 }
+
                                                 palabras[count] = palabra.toLowerCase().replaceAll(" ", "");
                                                 if (esPalindromo) {
                                                     palindromos[count] = "Sí";
@@ -176,6 +180,7 @@
                                             palabras = agregarPalabra(palabras, palabra);
                                         }
                                     %>
+                                    <p style="color: red; font-weight: bold"><%= error%></p>
                                     <div class="mt-5">
                                         <h1 style="font-size: 18px">Listado de palabras ingresadas</h1>
                                             <table style="background: #ffffff">
