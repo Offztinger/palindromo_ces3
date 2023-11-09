@@ -1,29 +1,30 @@
 package co.edu.elpoli.ces3.ces3;
 
-import java.io.*;
-
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
-public class HelloServlet extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+public class HelloServlet extends HttpServlet {
+    private String message;
+
+    public void init() {
+        message = "Hello Poli!!";
     }
 
-    // Algoritmo para verificar si una palabra es palíndromo
-    private boolean esPalindromo(String palabra) {
-        // Convertir la palabra a minúsculas
-        palabra = palabra.toLowerCase();
 
-        // Eliminar los espacios en blanco
-        palabra = palabra.replaceAll(" ", "");
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
 
-        // Invertir la palabra
-        String palabraInvertida = new StringBuilder(palabra).reverse().toString();
-
-        // Comparar la palabra original con la palabra invertida
-        return palabra.equals(palabraInvertida);
+        // Hello
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+        out.println("<h1>" + message + "</h1>");
+        out.println("</body></html>");
     }
 
     public void destroy() {
