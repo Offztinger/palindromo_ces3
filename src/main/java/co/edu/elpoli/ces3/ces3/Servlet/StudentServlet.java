@@ -66,7 +66,11 @@ public class StudentServlet extends MyServlet {
                     break;
                 }
             }
-            out.println(gson.toJson(studentSearch));
+            if(studentSearch != null){
+                out.println(gson.toJson(studentSearch));
+            } else {
+                out.println("No se encontro ningun estudiante con el id #" + studentId);
+            }
         }
     }
 
