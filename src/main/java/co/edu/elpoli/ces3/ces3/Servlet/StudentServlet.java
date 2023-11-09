@@ -3,7 +3,10 @@ package co.edu.elpoli.ces3.ces3.Servlet;
 import co.edu.elpoli.ces3.ces3.Modem.Student;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -65,6 +68,33 @@ public class StudentServlet extends MyServlet {
             }
             out.println(gson.toJson(studentSearch));
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, ServletException {
+        resp.setContentType("application/json");
+        ServletOutputStream out = resp.getOutputStream();
+        JsonObject body = this.getParamsFromPost(req);
+
+        Student std = new Student(
+                body.get("id").getAsInt(),
+                body.get("cedula").getAsString(),
+                body.get("nombre").getAsString()
+        );
+
+        this.students.add(std);
+        out.println(gson.toJson(std));
+        out.println("\n POST SUCCESSFUL");
+        out.flush();
+
+    }
+
+    public void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 
 }
