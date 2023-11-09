@@ -15,9 +15,13 @@ import java.util.ArrayList;
 
 public class StudentServlet extends MyServlet {
     private String message;
+    private GsonBuilder gsonBuilder;
+    private Gson gson;
     private ArrayList<Student> students;
-
     public void init() {
+
+        gsonBuilder = new GsonBuilder();
+        gson = gsonBuilder.create();
 
         students = new ArrayList<>();
         Student student1 = new Student();
@@ -48,7 +52,7 @@ public class StudentServlet extends MyServlet {
         PrintWriter out = response.getWriter();
         //Si param viene vacio...
         if (studentId == null){
-            out.println(students);
+            out.println(gson.toJson(students));
             //Si param viene lleno...
         } else {
             Student studentSearch = null;
@@ -59,7 +63,7 @@ public class StudentServlet extends MyServlet {
                     break;
                 }
             }
-            out.println(studentSearch);
+            out.println(gson.toJson(studentSearch));
         }
     }
 
